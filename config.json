@@ -1,0 +1,13 @@
+{
+	"parameters":
+	{
+		"local_server":"True",
+		"local_uri":"mysql+pymysql://root:@localhost/seatbooking",
+		"production_uri":"mysql+pymysql://root:@localhost/seatbooking"
+	}
+		
+}
+
+
+
+

@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<DOCTYPE! html>
+<html>
+<head>
+<style>
+table, th, td
+{
+	border: 1px solid black;
+}
+
+
+
+</style>
+</head>
+<body>
+
+<h1> List of trains:- </h1>
+
+
+<table style="background-color:#00FF00">
+	<tr>
+		<th> Train Name </th>
+		<th> Train Number </th>
+		<th> Starting Station </th>
+		<th> Destination </th>
+		<th> Halting Stations </th>
+		<th> Coaches available </th>
+		<th> Prices </th>
+		<th> Links 
+		
+		
+	</tr>
+	
+	<tr>
+		<td> {{ train_name }} </td>
+		<td> {{ train_no }} </td>
+		<td> {{ start_station }} </td>
+		<td> {{ destination }} </td>
+		<td> {{ halting_stations }} </td>
+		<td> {{ coachesavailable }} </td>
+		<td> {{ coaches_prices }} </td>
+		<td> <p><a href="coach1">2S</a></p>  <p><a href="coach2">SL</a></p> <p><a href="coach3">3A</a></p> <p><a href="coach4">2A</a></p>
+		
+	</tr>
+	
+</table>
+
+</body>
+</html>
+
+{% endblock %}
+
+

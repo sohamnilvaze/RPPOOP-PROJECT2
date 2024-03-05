@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+
+<DOCTYPE! html>
+<html>
+<head>
+<style>
+table, th, td
+{
+	border: 1px solid black;
+}
+
+</style>
+</head>
+<body>
+
+<h1> Type of coach is  Third AC/AC 3-tier/3A:- </h1>
+
+<table style="background-color:#00FF00">
+	<tr>
+		<th> Serial No  </th>
+		<th> Position in sequence </th>
+		<th> Available coaches </th>
+		<th> Number of available seat 
+		
+		
+	</tr>
+	
+	<tr>
+		<td> {{ ch3sno }} </td>
+		<td> {{ ch3pos }} </td>
+		<td> {{ ch3names }} </td>
+		<td> {{ ch3nofs }} </td>
+		
+		
+	</tr>
+	
+</table>
+
+<a href="{{ url_for('coach3seat')}}">To see the layout of the coach</a>
+
+</body>
+</html>
+
+{% endblock %}
+

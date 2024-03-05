@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f1f1f1;
+    }
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="button"] {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    input[type="button"] {
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+    input[type="button"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <form>
+    <h2>Login</h2>
+    <input type="text" id="username" name="username" placeholder="Username" required>
+    <input type="password" id="password" name="password" placeholder="Password" required>
+    <input type="button" value="Login" onclick="login()">
+  </form>
+  
+  {% if error %}
+  <p>{{ error }}</p>
+  {% endif %}
+
+  <!--<script>
+    function login() {
+      // Collecting username and password
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      // Here you can perform any client-side validation if needed
+
+      // Redirecting to home page
+      window.location.href = "/home";
+    }
+  </script>-->
+</body>
+</html>
+
+
+{% endblock %}
+

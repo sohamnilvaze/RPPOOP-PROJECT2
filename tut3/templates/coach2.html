@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+<DOCTYPE! html>
+<html>
+<head>
+<style>
+table, th, td
+{
+	border: 1px solid black;
+}
+
+</style>
+</head>
+<body>
+
+<h1> Type of coach is  Sleeper/SL:- </h1>
+
+<table style="background-color:#00FF00">
+	<tr>
+		<th> Serial No  </th>
+		<th> Position in sequence </th>
+		<th> Available coaches </th>
+		<th> Number of available seat 
+		
+		
+	</tr>
+	
+	<tr>
+		<td> {{ ch2sno }} </td>
+		<td> {{ ch2pos }} </td>
+		<td> {{ ch2names }} </td>
+		<td> {{ ch2nofs }} </td>
+		
+		
+	</tr>
+	
+</table>
+
+<a href="{{ url_for('coach2seat')}}">To see the layout of the coach</a>
+
+</body>
+</html>
+
+{% endblock %}
+
