@@ -1,0 +1,113 @@
+<!DOCTYPE html> 
+<html> 
+
+<head> 
+	<title>GeeksforGeeks Registration</title> 
+	<link rel="stylesheet"
+		href="style.css"> 
+</head> 
+
+<body> 
+	<div class="main"> 
+		<h1>Booking</h1> 
+		<h3>Enter your login credentials</h3> 
+		<form action=""> 
+			<label for="first"> 
+				Username: 
+			</label> 
+			<input type="text"
+				id="first"
+				name="first"
+				placeholder="Enter your Username" required> 
+
+			<label for="password"> 
+				Password: 
+			</label> 
+			<input type="password"
+				id="password"
+				name="password"
+				placeholder="Enter your Password" required> 
+
+			<div class="wrap"> 
+				<button type="submit"
+						onclick="solve()"> 
+					Submit 
+				</button> 
+			</div> 
+		</form> 
+		<p>Not registered? 
+			<a href="#"
+			style="text-decoration: none;"> 
+				Create an account 
+			</a> 
+		</p> 
+	</div> 
+</body> 
+
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f1f1f1;
+    }
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="submit"] {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    input[type="submit"] {
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <form>
+    <h2>Login</h2>
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <a href="home"><input type="submit" value="Login"></a>
+  </form>
+</body>
+</html>
+
+
+
+<footer>
+	
+	<img src="{{ url_for('static',filename='raillogo.png') }}", width= "75" height= "75">  
+	<p> In service of Indian Railways </p>
+</footer>
+
+

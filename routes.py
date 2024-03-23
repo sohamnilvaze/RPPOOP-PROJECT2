@@ -1,0 +1,262 @@
+import os
+import secrets
+from flask import render_template, request, redirect, url_for, flash
+from tut3 import app, db, bcrypt
+from tut3.models import User , Booking
+from tut3.forms import regform, loginform , updateaccform , bookform
+from flask_login import login_user , current_user , logout_user
+# Load database parameters from config.json
+# with open('config.json', 'r') as c:
+#     parameters = json.load(c)["parameters"]
+
+# Configure database URI
+# if (local_server):
+#     app.config["SQLALCHEMY_DATABASE_URI"] = parameters['local_uri']
+# else:
+#     app.config["SQLALCHEMY_DATABASE_URI"] = parameters['production_uri']
+
+trainname = "Pune-Kazipeth Superfast Express"
+trainno = "22151"
+startstation = "Pune"
+destination = "Kazipet Junction"
+haltingstations = "Daund Junction, Ahmadnagar, Kopargaon, Manmad Junction,\nBhusaval Junction, Shegaon, Akola Junction, Badnera Junction,\nDhamangaon, Pulgaon Junction, Wardha Junction,\nHinghat Junction, Warora, Bhandak, Chandrapur,\nBalharshah, Ramagundam, Peddapalli, Kazipet Junction"
+coachesavailable = "2S,\nSL,\n3A,\n2A\n"
+coachesprices = "NA,\n475,\n1255,\n1775\n"
+
+ch1sno = "1\n2\n"
+ch1pos = "1\n2\n"
+ch1names = "DL1\nDL2\n"
+ch1nofs = "78"
+
+ch2sno = "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n"
+ch2pos = "9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n"
+ch2names = "S1\nS2\nS3\nS4\nS5\nS6\nS7\nS8\nS9\nS10\nS11\n"
+ch2nofs = "71"
+
+ch3sno = "1\n2\n3\n4\n5\n6\n"
+ch3pos = "3\n4\n5\n6\n7\n8\n"
+ch3names = "B1\nB2\nB3\nB4\nB5\nB6\n"
+ch3nofs = "63"
+
+ch4sno = "1\n"
+ch4pos = "20\n"
+ch4names = "A1\n"
+ch4nofs = "45\n"
+
+@app.route("/")
+def welcome():
+    return render_template('index.html',title='MainPage')
+
+@app.route("/about")
+def about_us():
+    return render_template('about.html',title='About Us')
+
+@app.route("/home")
+def home_page():
+    return render_template('home.html',title='Home Page')
+
+@app.route("/trains")
+def trains_list():
+    return render_template('trains.html', train_name=trainname, train_no=trainno, start_station=startstation, destination=destination, halting_stations=haltingstations, coachesavailable=coachesavailable, coaches_prices=coachesprices, title='All about Trains')
+
+@app.route("/signup", methods=['POST', 'GET'])
+def signup():
+    if current_user.is_authenticated:
+        return redirect(url_for('home_page'))
+    form = regform()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        db.session.add(user)
+        db.session.commit()
+        flash('Your account has been created. Go to Login to login to your account!', 'success')
+        return redirect(url_for('home_page'))
+    return render_template('register.html', title='Register', form=form)
+
+@app.route("/coach1")
+def coach1info():
+    return render_template('coach1.html', ch1sno=ch1sno, ch1pos=ch1pos, ch1names=ch1names, ch1nofs=ch1nofs)
+
+@app.route("/coach2")
+def coach2info():
+    return render_template('coach2.html', ch2sno=ch2sno, ch2pos=ch2pos, ch2names=ch2names, ch2nofs=ch2nofs)
+
+@app.route("/coach3")
+def coach3info():
+    return render_template('coach3.html', ch3sno=ch3sno, ch3pos=ch3pos, ch3names=ch3names, ch3nofs=ch3nofs)
+
+@app.route("/coach4")
+def coach4info():
+    return render_template('coach4.html', ch4sno=ch4sno, ch4pos=ch4pos, ch4names=ch4names, ch4nofs=ch4nofs)
+    
+@app.route("/coach4seat")
+def coach4seat():
+	return render_template('coach4st.html')
+	
+@app.route("/coach3seat")
+def coach3seat():
+	return render_template('coach3st.html')
+	
+@app.route("/coach2seat")
+def coach2seat():
+	return render_template('coach2st.html')
+	
+@app.route("/coach1seat")
+def coach1seat():
+	return render_template('coach1st.html')
+
+@app.route("/DL1")
+def DL1seat():
+     return render_template('DL1.html')
+
+@app.route("/DL2")
+def DL2seat():
+     return render_template('DL2.html')
+
+@app.route("/S1")
+def S1seat():
+    bookedseat=Booking.query.filter_by(coachname='S1').with_entities(Booking.seatno).all()
+    bookedseat=[seat[0] for seat in bookedseat]
+    return render_template('S1.html',bookedseat=bookedseat)
+
+@app.route("/S2")
+def S2seat():
+    return render_template('S2.html')
+
+@app.route("/S3")
+def S3seat():
+    return render_template('S3.html')
+
+@app.route("/S4")
+def S4seat():
+    return render_template('S4.html')
+
+@app.route("/S5")
+def S5seat():
+    return render_template('S5.html')	
+
+@app.route("/S6")
+def S6seat():
+    return render_template('S6.html')
+
+@app.route("/S7")
+def S7seat():
+    return render_template('S7.html')
+
+@app.route("/S8")
+def S8seat():
+    return render_template('S8.html')
+
+@app.route("/S9")
+def S9seat():
+    return render_template('S9.html')
+
+@app.route("/S10")
+def S10seat():
+    return render_template('S10.html')
+
+@app.route("/S11")
+def S11seat():
+    return render_template('S11.html')
+
+@app.route("/B1")
+def B1seat():
+    return render_template('B1.html')
+
+@app.route("/B2")
+def B2seat():
+    return render_template('B2.html')
+
+@app.route("/B3")
+def B3seat():
+    return render_template('B3.html')
+
+@app.route("/B4")
+def B4seat():
+    return render_template('B4.html')
+
+@app.route("/B5")
+def B5seat():
+    return render_template('B5.html')
+
+@app.route("/B6")
+def B6seat():
+    return render_template('B6.html')
+
+@app.route("/A1")
+def A1seat():
+    return render_template('A1.html')
+
+
+@app.route("/login", methods=['POST', 'GET'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('home_page'))
+    form = loginform()
+    if form.validate_on_submit():
+        user=User.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password,form.password.data):
+            login_user(user,remember=form.remember.data)
+            return redirect(url_for('home_page'))
+        
+
+
+        else:
+            flash('Incorrect Login Credentials. Please check your Login details', 'danger')
+    return render_template('Login.html', title='Login', form=form)
+
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('welcome'))
+
+def savepict(form_picture):
+    random_hex = secrets.token_hex(8)
+    _,f_ext=os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static/profilepics', picture_fn )
+    form_picture.save(picture_path)
+
+    return picture_fn
+
+@app.route("/account", methods=['POST', 'GET'])
+def account():
+    form = updateaccform()
+    if form.validate_on_submit():
+        if form.picture.data:
+            pictfile=savepict(form.picture.data)
+            current_user.image_file= pictfile
+             
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Your account information has been updated', 'success')
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.username.data=current_user.username
+        form.email.data=current_user.email
+    image_file = url_for('static',filename='profilepics/' + current_user.image_file) 
+    return render_template('account.html', title='Account' , image_file=image_file , form=form )
+
+@app.route("/book",methods=['POST','GET'])
+def booknow():
+    form = bookform()
+    
+    if form.validate_on_submit():
+            if Booking.query.filter_by(seatno=form.seatno.data, coachname=form.coachname.data).first():
+                flash('Seat number already booked. Please choose a different seat.', 'danger')
+            else:
+                booking = Booking(username=form.username.data, email=form.email.data, seatno=form.seatno.data , startstation=form.startstation.data , endstation = form.endstation.data , coachname=form.coachname.data)
+                db.session.add(booking)
+                db.session.commit()
+                flash('Your seat has been successfully booked. Have a Safe Journey!', 'success')
+                return redirect(url_for('booknow'))
+                    
+            
+    
+    return render_template('book.html', title='Book', form=form)
+          
+
+
+    
