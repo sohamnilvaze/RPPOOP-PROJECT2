@@ -2,7 +2,7 @@ import os
 import secrets
 from flask import render_template, request, redirect, url_for, flash
 from tut3 import app, db, bcrypt
-from tut3.models import User , Booking
+from tut3.models import User , Booking , SeatBookings
 from tut3.forms import regform, loginform , updateaccform , bookform
 from flask_login import login_user , current_user , logout_user
 # Load database parameters from config.json
@@ -108,21 +108,21 @@ def coach1seat():
 @app.route("/DL1")
 def DL1seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='DL1').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='DL1').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('DL1.html', booked_seats=booked_seats)
 
 @app.route("/DL2")
 def DL2seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='DL2').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='DL2').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('DL2.html', booked_seats=booked_seats)
 
 @app.route("/S1")
 def S1seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='S1').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='S1').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('S1.html', booked_seats=booked_seats)
 
@@ -130,119 +130,119 @@ def S1seat():
 @app.route("/S2")
 def S2seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='S2').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='S2').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('S2.html', booked_seats=booked_seats)
 
 @app.route("/S3")
 def S3seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='S3').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='S3').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('S3.html', booked_seats=booked_seats)
 
 @app.route("/S4")
 def S4seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='S4').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='S4').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('S4.html', booked_seats=booked_seats)
 
 @app.route("/S5")
 def S5seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='S5').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='S5').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('S5.html', booked_seats=booked_seats)	
 
 @app.route("/S6")
 def S6seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='S6').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='S6').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('S6.html', booked_seats=booked_seats)
 
 @app.route("/S7")
 def S7seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='S7').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='S7').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('S7.html', booked_seats=booked_seats)
 
 @app.route("/S8")
 def S8seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='S8').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='S8').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('S8.html', booked_seats=booked_seats)
 
 @app.route("/S9")
 def S9seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='S9').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='S9').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('S9.html', booked_seats=booked_seats)
 
 @app.route("/S10")
 def S10seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='S10').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='S10').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('S10.html', booked_seats=booked_seats)
 
 @app.route("/S11")
 def S11seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='S11').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='S11').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('S11.html', booked_seats=booked_seats)
 
 @app.route("/B1")
 def B1seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='B1').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='B1').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('B1.html', booked_seats=booked_seats)
 
 @app.route("/B2")
 def B2seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='B2').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='B2').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('B2.html', booked_seats=booked_seats)
 
 @app.route("/B3")
 def B3seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='B3').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='B3').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('B3.html', booked_seats=booked_seats)
 
 @app.route("/B4")
 def B4seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='B4').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='B4').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('B4.html', booked_seats=booked_seats)
 
 @app.route("/B5")
 def B5seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='B5').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='B5').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('B5.html', booked_seats=booked_seats)
 
 @app.route("/B6")
 def B6seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='B6').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='B6').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('B6.html', booked_seats=booked_seats)
 
 @app.route("/A1")
 def A1seat():
     # Fetch booked seats for coach S1 from the database
-    booked_seats = Booking.query.filter_by(coachname='A1').with_entities(Booking.seatno).all()
+    booked_seats = SeatBookings.query.filter_by(coachname='A1').with_entities(SeatBookings.seatno).all()
     booked_seats = [seat[0] for seat in booked_seats]
     return render_template('A1.html', booked_seats=booked_seats)
 
@@ -303,11 +303,11 @@ def booknow():
     form = bookform()
     
     if form.validate_on_submit():
-            if Booking.query.filter_by(seatno=form.seatno.data, coachname=form.coachname.data).first():
+            if SeatBookings.query.filter_by(seatno=form.seatno.data, coachname=form.coachname.data).first():
                 flash('Seat number already booked. Please choose a different seat.', 'danger')
             else:
-                booking = Booking(username=form.username.data, email=form.email.data, seatno=form.seatno.data , startstation=form.startstation.data , endstation = form.endstation.data , coachname=form.coachname.data)
-                db.session.add(booking)
+                seat_bookings = SeatBookings(username=form.username.data, email=form.email.data, seatno=form.seatno.data , startstation=form.startstation.data , endstation = form.endstation.data , coachname=form.coachname.data)
+                db.session.add(seat_bookings)
                 db.session.commit()
                 flash('Your seat has been successfully booked. Have a Safe Journey!', 'success')
                 return redirect(url_for('booknow'))
