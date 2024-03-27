@@ -1,60 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coach type:- 2 Tier AC/2A</title>
-    <link rel = "stylesheet" href = "style.css">  
-  </head>
-  
-  <body>
-    Coach type:- 2 Tier AC/2A
-	<div class = "Coach type:- 2 Tier AC/2A">
-        <div id = "st1"></div>
-        <div id = "st2"></div>
-        <div id = "st3"></div>
-        <div id = "st4"></div>
-        <div id = "st5"></div>
-        <div id = "st6"></div>
-        <div id = "st7"></div>
-        <div id = "st8"></div>
-        <div id = "st9"></div>
-        <div id = "st10"></div>
-        <div id = "st11"></div>
-        <div id = "st12"></div>
-        <div id = "st13"></div>
-        <div id = "st14"></div>
-        <div id = "st15"></div>
-        <div id = "st16"></div>
-        <div id = "st17"></div>
-        <div id = "st18"></div>
-        <div id = "st19"></div>
-        <div id = "st20"></div>
-        <div id = "st21"></div>
-        <div id = "st22"></div>
-        <div id = "st23"></div>
-        <div id = "st24"></div>
-        <div id = "st25"></div>
-        <div id = "st26"></div>
-        <div id = "st27"></div>
-        <div id = "st28"></div>
-        <div id = "st29"></div>
-        <div id = "st30"></div>
-        <div id = "st31"></div>
-        <div id = "st32"></div>
-        <div id = "st33"></div>
-        <div id = "st34"></div>
-        <div id = "st35"></div>
-        <div id = "st36"></div>
-        <div id = "st37"></div>
-        <div id = "st38"></div>
-        <div id = "st39"></div>
-        <div id = "st40"></div>
-        <div id = "st41"></div>
-        <div id = "st42"></div>
-        <div id = "st43"></div>
-        <div id = "st44"></div>
-        <div id = "st45"></div>
-        
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Train Coach Seating</title>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+  }
+  .title {
+    text-align: center;
+  }
+  .coach {
+    width: 250px;
+    background-color: #ddd;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .seat {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    border: 1px solid #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  .gap {
+    width: 10px; /* Adjust the width of the gap */
+  }
+</style>
+</head>
+<body>
+  <h2 class="title">Train Coach Seating</h2> <!-- Title added here -->
+  <div class="coach">
+    <!-- Seats will be generated dynamically using JavaScript -->
+  </div>
+  <script>
+    const coach = document.querySelector('.coach');
+    const totalSeats = 75;
+    const seatsPerRow = 5;
+
+    for (let i = 1; i <= totalSeats; i++) {
+      const seat = document.createElement('div');
+      seat.classList.add('seat');
+      seat.textContent = i;
+      coach.appendChild(seat);
+
+      if (i % seatsPerRow === 3 && i !== totalSeats) {
+        const gap = document.createElement('div');
+        gap.classList.add('gap');
+        coach.appendChild(gap);
+      }
+
+      if (i % seatsPerRow === 0 && i !== totalSeats) {
+        const breakElement = document.createElement('div');
+        breakElement.style.width = '100%';
+        coach.appendChild(breakElement);
+      }
+    }
+  </script>
+</body>
 </html>
+

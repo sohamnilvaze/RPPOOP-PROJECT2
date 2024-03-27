@@ -26,3 +26,22 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"Post('{self.title}' , '{self.date_posted}' )"
+    
+
+class Booking(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username= db.Column(db.String(20), nullable=False)
+    email= db.Column(db.String(120), nullable=False)
+    seatno=db.Column(db.Integer , nullable = False)
+    startstation = db.Column(db.String(120), nullable=False)
+    endstation = db.Column(db.String(120) , nullable=False)
+    coachname = db.Column(db.String(20), nullable=False)
+
+    def __repr__(self):
+        return f"Booking('{self.username}','{self.email}','{self.seatno}','{self.startstation}','{self.endstation}',{self.coachname}' )"
+
+def init_db():
+    db.create_all
+
+if __name__ == '__main__':
+    init_db()

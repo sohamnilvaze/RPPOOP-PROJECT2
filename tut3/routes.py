@@ -2,9 +2,9 @@ import os
 import secrets
 from flask import render_template, request, redirect, url_for, flash
 from tut3 import app, db, bcrypt
-from tut3.models import User
-from tut3.forms import regform, loginform , updateaccform
-from flask_login import login_user , current_user , logout_user 
+from tut3.models import User , Booking
+from tut3.forms import regform, loginform , updateaccform , bookform
+from flask_login import login_user , current_user , logout_user
 # Load database parameters from config.json
 # with open('config.json', 'r') as c:
 #     parameters = json.load(c)["parameters"]
@@ -45,19 +45,19 @@ ch4nofs = "45\n"
 
 @app.route("/")
 def welcome():
-    return render_template('index.html')
+    return render_template('index.html',title='MainPage')
 
 @app.route("/about")
 def about_us():
-    return render_template('about.html')
+    return render_template('about.html',title='About Us')
 
 @app.route("/home")
 def home_page():
-    return render_template('home.html')
+    return render_template('home.html',title='Home Page')
 
 @app.route("/trains")
 def trains_list():
-    return render_template('trains.html', train_name=trainname, train_no=trainno, start_station=startstation, destination=destination, halting_stations=haltingstations, coachesavailable=coachesavailable, coaches_prices=coachesprices)
+    return render_template('trains.html', train_name=trainname, train_no=trainno, start_station=startstation, destination=destination, halting_stations=haltingstations, coachesavailable=coachesavailable, coaches_prices=coachesprices, title='All about Trains')
 
 @app.route("/signup", methods=['POST', 'GET'])
 def signup():
@@ -104,7 +104,147 @@ def coach2seat():
 @app.route("/coach1seat")
 def coach1seat():
 	return render_template('coach1st.html')
-	
+
+@app.route("/DL1")
+def DL1seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='DL1').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('DL1.html', booked_seats=booked_seats)
+
+@app.route("/DL2")
+def DL2seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='DL2').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('DL2.html', booked_seats=booked_seats)
+
+@app.route("/S1")
+def S1seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='S1').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('S1.html', booked_seats=booked_seats)
+
+
+@app.route("/S2")
+def S2seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='S2').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('S2.html', booked_seats=booked_seats)
+
+@app.route("/S3")
+def S3seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='S3').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('S3.html', booked_seats=booked_seats)
+
+@app.route("/S4")
+def S4seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='S4').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('S4.html', booked_seats=booked_seats)
+
+@app.route("/S5")
+def S5seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='S5').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('S5.html', booked_seats=booked_seats)	
+
+@app.route("/S6")
+def S6seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='S6').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('S6.html', booked_seats=booked_seats)
+
+@app.route("/S7")
+def S7seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='S7').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('S7.html', booked_seats=booked_seats)
+
+@app.route("/S8")
+def S8seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='S8').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('S8.html', booked_seats=booked_seats)
+
+@app.route("/S9")
+def S9seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='S9').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('S9.html', booked_seats=booked_seats)
+
+@app.route("/S10")
+def S10seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='S10').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('S10.html', booked_seats=booked_seats)
+
+@app.route("/S11")
+def S11seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='S11').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('S11.html', booked_seats=booked_seats)
+
+@app.route("/B1")
+def B1seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='B1').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('B1.html', booked_seats=booked_seats)
+
+@app.route("/B2")
+def B2seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='B2').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('B2.html', booked_seats=booked_seats)
+
+@app.route("/B3")
+def B3seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='B3').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('B3.html', booked_seats=booked_seats)
+
+@app.route("/B4")
+def B4seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='B4').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('B4.html', booked_seats=booked_seats)
+
+@app.route("/B5")
+def B5seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='B5').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('B5.html', booked_seats=booked_seats)
+
+@app.route("/B6")
+def B6seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='B6').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('B6.html', booked_seats=booked_seats)
+
+@app.route("/A1")
+def A1seat():
+    # Fetch booked seats for coach S1 from the database
+    booked_seats = Booking.query.filter_by(coachname='A1').with_entities(Booking.seatno).all()
+    booked_seats = [seat[0] for seat in booked_seats]
+    return render_template('A1.html', booked_seats=booked_seats)
 
 
 @app.route("/login", methods=['POST', 'GET'])
@@ -157,5 +297,25 @@ def account():
         form.email.data=current_user.email
     image_file = url_for('static',filename='profilepics/' + current_user.image_file) 
     return render_template('account.html', title='Account' , image_file=image_file , form=form )
+
+@app.route("/book",methods=['POST','GET'])
+def booknow():
+    form = bookform()
+    
+    if form.validate_on_submit():
+            if Booking.query.filter_by(seatno=form.seatno.data, coachname=form.coachname.data).first():
+                flash('Seat number already booked. Please choose a different seat.', 'danger')
+            else:
+                booking = Booking(username=form.username.data, email=form.email.data, seatno=form.seatno.data , startstation=form.startstation.data , endstation = form.endstation.data , coachname=form.coachname.data)
+                db.session.add(booking)
+                db.session.commit()
+                flash('Your seat has been successfully booked. Have a Safe Journey!', 'success')
+                return redirect(url_for('booknow'))
+                    
+            
+    
+    return render_template('book.html', title='Book', form=form)
+          
+
 
     

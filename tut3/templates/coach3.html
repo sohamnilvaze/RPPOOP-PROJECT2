@@ -31,7 +31,8 @@ table, th, td
 	<tr>
 		<td> {{ ch3sno }} </td>
 		<td> {{ ch3pos }} </td>
-		<td> {{ ch3names }} </td>
+		<!--<td> {{ ch3names }} </td>-->
+		<td> <p><a href="B1">B1</a></p>  <p><a href="B2">B2</a></p> <p><a href="B3">B3</a></p> <p><a href="B4">B4</a></p> <p><a href="B5">B5</a></p><p><a href="B6">B6</a></p></td>
 		<td> {{ ch3nofs }} </td>
 		
 		
@@ -39,7 +40,8 @@ table, th, td
 	
 </table>
 
-<a href="{{ url_for('coach3seat')}}">To see the layout of the coach</a>
+<a href="{{ url_for('coach3seat')}}">To see the layout of the coach</a><br>
+<a href="{{ url_for('booknow')  }}">Book your seat</a>
 
 </body>
 </html>
