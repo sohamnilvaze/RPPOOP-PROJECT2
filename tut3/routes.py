@@ -3,7 +3,7 @@ import secrets
 from flask import render_template, request, redirect, url_for, flash
 from tut3 import app, db, bcrypt
 from tut3.models import User , Booking , SeatBookings
-from tut3.forms import regform, loginform , updateaccform , bookform
+from tut3.forms import regform, loginform , updateaccform , bookform,deletebookingform
 from flask_login import login_user , current_user , logout_user
 # Load database parameters from config.json
 # with open('config.json', 'r') as c:
@@ -315,6 +315,26 @@ def booknow():
             
     
     return render_template('book.html', title='Book', form=form)
+
+@app.route("/deletebooking",methods=['POST','GET'])
+def deletebooking():
+    form = deletebookingform()
+
+    booking=SeatBookings.query.filter_by(username=form.username.data,email=form.email.data,seatno=form.seatno.data,coachname=form.coachname.data).first()
+
+    if form.validate_on_submit():
+        if booking:
+            db.session.delete(booking)
+            db.session.commit()
+            flash('Your seat booking has been successfully deleted!','success')
+        else:
+            flash('No such booking found.Please try again !','danger')
+            return redirect(url_for('trains_list'))
+        
+    return render_template('deleteseat.html',title= 'Delete Seat',form=form)
+
+
+
           
 
 

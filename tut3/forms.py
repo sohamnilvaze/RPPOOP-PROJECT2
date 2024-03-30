@@ -95,6 +95,16 @@ class bookform(FlaskForm):
 
 	submit=SubmitField('Book')
 
+class deletebookingform(FlaskForm):
+	username= StringField('Username',validators=[DataRequired()])
+	email=StringField('Email', validators=[DataRequired(), Email() ])
+	seatno= IntegerField('Seatno',validators=[ DataRequired() , NumberRange( min=0, max=75)])
+	coachname = SelectField('Coachname', choices= COACHES, validators=[DataRequired()])
+
+	submit=SubmitField('Delete Seat Booking')
+
+	
+
 
 
 	
