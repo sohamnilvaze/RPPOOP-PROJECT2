@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Train Coach Seating</title>
+<title>Train Coach Seating - S1</title>
 <style>
   body {
     display: flex;
@@ -37,37 +37,23 @@
   .gap {
     width: 10px; /* Adjust the width of the gap */
   }
+  .booked {
+    background-color: red;  /* Color for booked seats */
+  }
 </style>
 </head>
 <body>
-  <h2 class="title">Train Coach Seating</h2> <!-- Title added here -->
+  <h2 class="title">Train Coach Seating - DL1</h2>
   <div class="coach">
-    <!-- Seats will be generated dynamically using JavaScript -->
+    <!-- Seats will be generated dynamically using Flask -->
+    {% for seat_number in range(1, 76) %}
+      <div class="seat {% if seat_number in booked_seats %} booked {% endif %}">
+        {{ seat_number }}
+      </div>
+      {% if seat_number % 5 == 0 and seat_number != 75 %}
+        <div class="gap"></div>
+      {% endif %}
+    {% endfor %}
   </div>
-  <script>
-    const coach = document.querySelector('.coach');
-    const totalSeats = 75;
-    const seatsPerRow = 5;
-
-    for (let i = 1; i <= totalSeats; i++) {
-      const seat = document.createElement('div');
-      seat.classList.add('seat');
-      seat.textContent = i;
-      coach.appendChild(seat);
-
-      if (i % seatsPerRow === 3 && i !== totalSeats) {
-        const gap = document.createElement('div');
-        gap.classList.add('gap');
-        coach.appendChild(gap);
-      }
-
-      if (i % seatsPerRow === 0 && i !== totalSeats) {
-        const breakElement = document.createElement('div');
-        breakElement.style.width = '100%';
-        coach.appendChild(breakElement);
-      }
-    }
-  </script>
 </body>
 </html>
-

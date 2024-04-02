@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Coach</title>
+    <link rel="stylesheet" href="coach.css">
+    <style>
+        .seat.selected {
+            background-color: #0bda51;
+        }
+    </style>
+</head>
+<body>
+    <div class="coach">
+        <div class="seats">
+            <div class="left-side">
+                
+            </div>
+            <div class="right-side">
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const numRows = 15; 
+        const numSeatsPerRow = 3; 
+
+        
+        const leftSide = document.querySelector('.left-side');
+        let p = 1;
+        for (let i = 0; i < numRows; i++) {
+            const row = document.createElement('div');
+            row.classList.add('row');
+            for (let j = 0; j < numSeatsPerRow; j++) {
+                const seat = document.createElement('div');
+                seat.textContent = p++;
+                seat.classList.add('seat');
+                seat.addEventListener('click', toggleSeatColor);
+                row.appendChild(seat);
+            }
+            p+=2;
+            leftSide.appendChild(row);
+        }
+
+        
+        const rightSide = document.querySelector('.right-side');
+        p = 4;
+        for (let i = 0; i < numRows; i++) {
+            const row = document.createElement('div');
+            row.classList.add('row');
+            const spacer = document.createElement('div');
+            spacer.classList.add('spacer');
+            row.appendChild(spacer);
+            for (let j = 0; j < numSeatsPerRow - 1; j++) {
+                const seat = document.createElement('div');
+                seat.textContent = p++;
+                seat.classList.add('seat');
+                seat.addEventListener('click', toggleSeatColor);
+                row.appendChild(seat);
+            }
+            p+=3;
+            rightSide.appendChild(row);
+        }
+
+        function toggleSeatColor() {
+            this.classList.toggle('selected');
+        }
+    </script>
+</body>
+</html>
