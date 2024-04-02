@@ -3,7 +3,7 @@ from flask_wtf.file import FileField , FileAllowed
 from flask_login import current_user
 from wtforms import StringField , PasswordField , SubmitField , BooleanField , IntegerField , SelectField
 from wtforms.validators import DataRequired , Length , Email , EqualTo , ValidationError ,NumberRange
-from tut3.models import User, Booking , SeatBookings
+from tut3.models import User, Booking , SeatBookings , TicketBookings
 
 STATION_CHOICES = [ ('Pune Junction','Pune Junction'),
     ('Daund Junction', 'Daund Junction'),
@@ -81,6 +81,9 @@ class updateaccform(FlaskForm):
 class bookform(FlaskForm):
 	username= StringField('Username',validators=[DataRequired()])
 	email=StringField('Email', validators=[DataRequired(), Email() ])
+	trainname=StringField('TrainName',validators=[DataRequired()])
+	trainnumber=StringField('TrainNumber',validators=[DataRequired()])
+	dateoftravel=StringField('DateofTravel',validators=[DataRequired()])
 	seatno= IntegerField('Seatno',validators=[ DataRequired() , NumberRange( min=0, max=75)])
 	#startstation = StringField('Startstation' , validators=[DataRequired()])
 	startstation = SelectField('Startstation', choices=STATION_CHOICES, validators=[DataRequired()])
@@ -98,6 +101,9 @@ class bookform(FlaskForm):
 class deletebookingform(FlaskForm):
 	username= StringField('Username',validators=[DataRequired()])
 	email=StringField('Email', validators=[DataRequired(), Email() ])
+	trainname=StringField('TrainName',validators=[DataRequired()])
+	trainnumber=StringField('TrainNumber',validators=[DataRequired()])
+	dateoftravel=StringField('DateofTravel',validators=[DataRequired()])
 	seatno= IntegerField('Seatno',validators=[ DataRequired() , NumberRange( min=0, max=75)])
 	coachname = SelectField('Coachname', choices= COACHES, validators=[DataRequired()])
 

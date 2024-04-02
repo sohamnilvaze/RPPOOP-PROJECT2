@@ -49,10 +49,25 @@ class SeatBookings(db.Model):
     endstation = db.Column(db.String(120) , nullable=False)
     coachname = db.Column(db.String(20), nullable=False)
 
+
     def __repr__(self):
-        return f"SeatBookings('{self.username}','{self.email}','{self.seatno}','{self.startstation}','{self.endstation}',{self.coachname}' )"
+        return f"SeatBookings('{self.username}','{self.email}','{self.seatno}','{self.startstation}','{self.endstation}','{self.coachname}' )"
+
+class TicketBookings(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username= db.Column(db.String(20), nullable=False)
+    email= db.Column(db.String(120), nullable=False)
+    trainname=db.Column(db.String(120), nullable=False)
+    trainnumber=db.Column(db.String(120),nullable=False)
+    dateoftravel=db.Column(db.String(120), nullable=False)
+    seatno=db.Column(db.Integer , nullable = False)
+    startstation = db.Column(db.String(120), nullable=False)
+    endstation = db.Column(db.String(120) , nullable=False)
+    coachname = db.Column(db.String(20), nullable=False)
 
 
+    def __repr__(self):
+        return f"TicketBookings('{self.username}','{self.email}','{self.trainname}','{self.trainnumber}','{self.dateoftravel}','{self.seatno}','{self.startstation}','{self.endstation}','{self.coachname}' )"
 
 def init_db():
     db.create_all
