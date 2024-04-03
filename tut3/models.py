@@ -26,6 +26,20 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"Post('{self.title}' , '{self.date_posted}' )"
+
+class TrainsList(db.Model):
+    id=db.Column(db.Integer,primary_key=True)
+    trainno=db.Column(db.String(10),nullable=False)
+    trainname=db.Column(db.String(100),nullable=False)
+    startstation=db.Column(db.String(100),nullable=False)
+    endstation=db.Column(db.String(100),nullable=False)
+    days=db.Column(db.String(100),nullable=False)
+    departuretime=db.Column(db.String(10),nullable=False)
+    arrivaltime=db.Column(db.String(10),nullable=False)
+    coaches=db.Column(db.String(10),nullable=False)
+
+    def __repr__(self):
+        return f"TrainsList('{self.trainno}','{self.trainname}','{self.startstation}','{self.endstation}','{self.days}','{self.departuretime}','{self.arrivaltime}','{self.coaches}')"
     
 
 class Booking(db.Model):
@@ -49,10 +63,25 @@ class SeatBookings(db.Model):
     endstation = db.Column(db.String(120) , nullable=False)
     coachname = db.Column(db.String(20), nullable=False)
 
+
     def __repr__(self):
-        return f"SeatBookings('{self.username}','{self.email}','{self.seatno}','{self.startstation}','{self.endstation}',{self.coachname}' )"
+        return f"SeatBookings('{self.username}','{self.email}','{self.seatno}','{self.startstation}','{self.endstation}','{self.coachname}' )"
+
+class TicketBookings(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username= db.Column(db.String(20), nullable=False)
+    email= db.Column(db.String(120), nullable=False)
+    trainname=db.Column(db.String(120), nullable=False)
+    trainnumber=db.Column(db.String(120),nullable=False)
+    dateoftravel=db.Column(db.String(120), nullable=False)
+    seatno=db.Column(db.Integer , nullable = False)
+    startstation = db.Column(db.String(120), nullable=False)
+    endstation = db.Column(db.String(120) , nullable=False)
+    coachname = db.Column(db.String(20), nullable=False)
 
 
+    def __repr__(self):
+        return f"TicketBookings('{self.username}','{self.email}','{self.trainname}','{self.trainnumber}','{self.dateoftravel}','{self.seatno}','{self.startstation}','{self.endstation}','{self.coachname}' )"
 
 def init_db():
     db.create_all

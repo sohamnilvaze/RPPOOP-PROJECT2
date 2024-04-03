@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
+	<title>Seat Delete</title>
 	<div class="content-section">
 		<form method="POST" action="">
 			{{ form.hidden_tag() }}
@@ -39,6 +40,60 @@
 						</div>
 					{% else %}
 						{{ form.email(class="form-control form-control-lg") }}
+						
+					{% endif %}
+				
+				</div>
+
+				<div class="form-group">
+					{{ form.trainname.label(class="form-control-label") }}
+
+					{% if form.trainname.errors %}
+					{{ form.trainname(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.trainname.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+
+						</div>
+					{% else %}
+						{{ form.trainname(class="form-control form-control-lg") }}
+						
+					{% endif %}
+				
+				</div>
+
+				<div class="form-group">
+					{{ form.trainnumber.label(class="form-control-label") }}
+
+					{% if form.trainnumber.errors %}
+					{{ form.trainnumber(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.trainnumber.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+
+						</div>
+					{% else %}
+						{{ form.trainnumber(class="form-control form-control-lg") }}
+						
+					{% endif %}
+				
+				</div>
+
+				<div class="form-group">
+					{{ form.dateoftravel.label(class="form-control-label") }}
+
+					{% if form.dateoftravel.errors %}
+					{{ form.dateoftravel(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.dateoftravel.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+
+						</div>
+					{% else %}
+						{{ form.dateoftravel(class="form-control form-control-lg") }}
 						
 					{% endif %}
 				
