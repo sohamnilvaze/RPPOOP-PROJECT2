@@ -10,6 +10,8 @@
 body { 
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  /*background-image: url("{{ url_for('static', filename='bullet_train.jpg') }}");
+  background-size: cover;  Cover the entire background */
 }
 
 .header {
@@ -67,7 +69,18 @@ body {
   <a href="#default" class="logo">SeatBooking</a>
   <img src="{{ url_for('static',filename='logo.png') }} " alt="Websitelogo" width="75" height="75"> 
   <div class="header-right">
-    <a href="{{ url_for('logout')}}">Logout</a>
+  	{% if current_user.is_authenticated %}
+  		<a href="{{ url_for('logout')}}">Logout</a>
+      <a href="{{ url_for('account')}}">Account</a>
+      <a href="{{ url_for('traindetails') }}">Trains</a>
+      <a href="{{ url_for('add_train') }}">Add Train</a>
+
+  	
+  	{% else %}
+    	<a href="{{ url_for('about_us')}}">About</a>
+    	<a href="{{ url_for('login')}}">Login</a>
+    	<a href="{{ url_for('signup')}}">Signup</a>
+    {% endif %}
   </div>
 </div>
 
@@ -109,7 +122,7 @@ body {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Center-aligned Footer</title>
+    <!--<title>Center-aligned Footer</title>-->
     <style>
         footer {
             text-align: center;

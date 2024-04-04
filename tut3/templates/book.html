@@ -61,6 +61,7 @@
 						
 					{% endif %}
 				
+
 				</div>
 
 				<div class="form-group">
@@ -183,3 +184,15 @@
 	</div>
 
 {% endblock %}
+
+<!--<script>
+    // Update trainnumber field based on the selected trainname
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('trainname').addEventListener('change', function() {
+            var selectedTrainname = this.value;
+            var trainnumbers = JSON.parse('{{ trainnumbers | tojson | safe }}');
+            document.getElementById('trainnumber').value = trainnumbers[selectedTrainname];
+        });
+    });
+</script>-->
+

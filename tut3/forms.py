@@ -1,9 +1,10 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField , FileAllowed
 from flask_login import current_user
-from wtforms import StringField , PasswordField , SubmitField , BooleanField , IntegerField , SelectField
+from wtforms import StringField , PasswordField , SubmitField , BooleanField , IntegerField , SelectField , DateField
 from wtforms.validators import DataRequired , Length , Email , EqualTo , ValidationError ,NumberRange
-from tut3.models import User, Booking , SeatBookings , TicketBookings
+from tut3.models import User, Booking , SeatBookings , TicketBookings ,TrainsList
+from datetime import datetime
 '''
 STATION_CHOICES = [ ('Pune Junction','Pune Junction'),
     ('Daund Junction', 'Daund Junction'),
@@ -82,9 +83,10 @@ class updateaccform(FlaskForm):
 class bookform(FlaskForm):
 	username= StringField('Username',validators=[DataRequired()])
 	email=StringField('Email', validators=[DataRequired(), Email() ])
-	trainname=StringField('TrainName',validators=[DataRequired()])
+	trainname=SelectField('TrainName',validators=[DataRequired()])
 	trainnumber=StringField('TrainNumber',validators=[DataRequired()])
 	dateoftravel=StringField('DateofTravel',validators=[DataRequired()])
+	#dateoftravel=DateField('Date of Travel',format='%d/%m/%Y',validators=[DataRequired()])
 	seatno= IntegerField('Seatno',validators=[ DataRequired() , NumberRange( min=0, max=75)])
 	#startstation = StringField('Startstation' , validators=[DataRequired()])
 	startstation = SelectField('Startstation', choices=STATION_CHOICES, validators=[DataRequired()])
@@ -95,9 +97,26 @@ class bookform(FlaskForm):
 	'''
 	if (startstation.data==endstation.data):
 		raise ValidationError('Please enter proper start and end stations. They should not be same')
+	
+	def __init__(self, *args, **kwargs):
+    	super(bookform, self).__init__(*args, **kwargs)
+        self.train_name.choices = [(train.trainname, train.trainname) for train in TrainsList.query.all()]
+	'''
+	def __init__(self, *args, **kwargs):
+		super(bookform,self).__init__(*args,**kwargs)
+		self.trainname.choices= [(train.trainname,train.trainname) for train in TrainsList.query.all()]
+	'''
+	def __init__(self,*args,**kwargs):
+		super(bookform,self).__init__(*args,**kwargs)
+		self.trainnumber.choices=[(train.trainno,train.trainno) for train in TrainsList.query.all()]
+	'''
+	submit=SubmitField('Book')
+	'''
+	def validate_dateoftravel(self,dateoftravel):
+		if dateoftravel.data and dateoftravel.data < datetime.now().date():
+			raise ValidationError('Please input a valid date!')
 	'''
 
-	submit=SubmitField('Book')
 
 class deletebookingform(FlaskForm):
 	username= StringField('Username',validators=[DataRequired()])
@@ -121,6 +140,13 @@ class addtrain(FlaskForm):
 	coaches=StringField('Coaches Available',validators=[DataRequired()])
 
 	submit=SubmitField('Add Train')
+
+class removetrain(FlaskForm):
+	trainno=StringField('Train No',validators=[DataRequired()])
+	trainname=StringField('Train Name',validators=[DataRequired()])
+
+	submit=SubmitField('Remove Train')
+	
 
 
 	

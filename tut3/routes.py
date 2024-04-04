@@ -3,7 +3,7 @@ import secrets
 from flask import render_template, request, redirect, url_for, flash , send_file
 from tut3 import app, db, bcrypt
 from tut3.models import User , Booking , SeatBookings , TicketBookings ,TrainsList
-from tut3.forms import regform, loginform , updateaccform , bookform,deletebookingform ,addtrain
+from tut3.forms import regform, loginform , updateaccform , bookform,deletebookingform ,addtrain ,removetrain
 from flask_login import login_user , current_user , logout_user ,login_required 
 from flask_mail import Message
 from tut3 import mail
@@ -60,6 +60,12 @@ def about_us():
 def home_page():
     return render_template('home.html',title='Home Page')
 
+@app.route("/trainlist")
+def traindetails():
+    trains=TrainsList.query.all()
+    return render_template('traindetails.html',trains=trains)
+
+
 @app.route("/trains")
 @login_required
 def train_list():
@@ -69,7 +75,7 @@ def train_list():
 @login_required
 def add_train():
     if (current_user.username!='soham_vaze'):
-        flash('You cannot have access to this form!','danger')
+        flash('You cannot have access to this page!','danger')
         return redirect(url_for('home_page'))
     form=addtrain()
     if form.validate_on_submit():
@@ -377,6 +383,27 @@ def deletebooking():
             return redirect(url_for('train_list'))
         
     return render_template('deleteseat.html',title= 'Delete Seat',form=form)
+
+@app.route("/deletetrain",methods=['POST','GET'])
+def deletetrain():
+    if (current_user.username!='soham_vaze'):
+        flash('You cannot have access to this page!','danger')
+        return redirect(url_for('home_page'))
+    form=removetrain()
+
+    train=TrainsList.query.filter_by(trainno=form.trainno.data,trainname=form.trainname.data).first()
+
+    if form.validate_on_submit():
+        if train:
+            db.session.delete(train)
+            db.session.commit()
+            flash('The train has been removed!','success')
+        else:
+            flash('No such train found!','danger')
+            return redirect(url_for('home_page'))
+        
+    return render_template('removingtrain.html',title='Remove Train',form=form)
+
 
 
 

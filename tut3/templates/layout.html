@@ -72,8 +72,10 @@ body {
   	{% if current_user.is_authenticated %}
   		<a href="{{ url_for('logout')}}">Logout</a>
       <a href="{{ url_for('account')}}">Account</a>
-      <a href="{{ url_for('train_list') }}">Trains</a>
+      <a href="{{ url_for('traindetails') }}">Trains</a>
+      <a href="{{ url_for('train_list')}}">Seat Availabilty</a>
       <a href="{{ url_for('add_train') }}">Add Train</a>
+      <a href="{{ url_for('deletetrain')}}">Remove Train</a>
 
   	
   	{% else %}

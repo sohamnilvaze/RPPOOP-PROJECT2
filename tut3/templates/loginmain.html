@@ -1,82 +1,98 @@
 {% extends "layout.html" %}
 {% block body %}
+	<title>Sign Up</title>
+	<div class="content-section">
+		<form method="POST" action="">
+			{{ form.hidden_tag() }}
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4">Create Account</legend>
+				<div class="form-group">
+					{{ form.username.label(class="form-control-label") }}
+
+					{% if form.username.errors %}
+					{{ form.username(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.username.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+
+						</div>
+					{% else %}
+						{{ form.username(class="form-control form-control-lg") }}
+						
+					{% endif %}
 
 
 
+					
+				</div>
+				<div class="form-group">
+					{{ form.email.label(class="form-control-label") }}
+
+					{% if form.email.errors %}
+					{{ form.email(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.email.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+
+						</div>
+					{% else %}
+						{{ form.email(class="form-control form-control-lg") }}
+						
+					{% endif %}
+				
+				</div>
+				<div class="form-group">
+					{{ form.password.label(class="form-control-label") }}
 
 
+					{% if form.password.errors %}
+					{{ form.password(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.password.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
 
+						</div>
+					{% else %}
+						{{ form.password(class="form-control form-control-lg") }}
+						
+					{% endif %}
+			
+				</div>
+				<div class="form-group">
+					{{ form.confirm_password.label(class="form-control-label") }}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f1f1f1;
-    }
-    form {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    input[type="text"],
-    input[type="password"],
-    input[type="button"] {
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-    input[type="button"] {
-      background-color: #4caf50;
-      color: white;
-      cursor: pointer;
-    }
-    input[type="button"]:hover {
-      background-color: #45a049;
-    }
-  </style>
-</head>
-<body>
-  <form>
-    <h2>Login</h2>
-    <input type="text" id="username" name="username" placeholder="Username" required>
-    <input type="password" id="password" name="password" placeholder="Password" required>
-    <input type="button" value="Login" onclick="login()">
-  </form>
-  
-  {% if error %}
-  <p>{{ error }}</p>
-  {% endif %}
+					{% if form.confirm_password.errors %}
+					{{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.confirm_password.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
 
-  <!--<script>
-    function login() {
-      // Collecting username and password
-      var username = document.getElementById("username").value;
-      var password = document.getElementById("password").value;
-
-      // Here you can perform any client-side validation if needed
-
-      // Redirecting to home page
-      window.location.href = "/home";
-    }
-  </script>-->
-</body>
-</html>
-
-
+						</div>
+					{% else %}
+						{{ form.confirm_password(class="form-control form-control-lg") }}
+						
+					{% endif %}
+			
+				</div>
+			</fieldset>
+			<div class="form-group">
+				{{ form.submit(class="btn btn-outline-info") }}
+			</div>
+		</form>
+	</div>
+			
+	<div class="border-top pt-3">
+		<small class="text-muted">
+			Already have an account? <a class="ml-2" href="{{ url_for('login') }}">Log In</a>
+		</small>
+	</div>
+			
+			
+				
+					
+				
 {% endblock %}
-
