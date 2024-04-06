@@ -1,17 +1,42 @@
 {% extends "layout.html" %}
 {% block body %}
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Train Details</title>
+    <style>
+        /* Add CSS styles from the second code snippet */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #2704f0;
+            color: #ffffff;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #F8F8F8;
+        }
+        
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+    </style>
 </head>
 <body>
     <h1>Trains List</h1>
-    <table border="1">
+    <table>
         <thead>
             <tr>
                 <th>Train No</th>

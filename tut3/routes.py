@@ -31,22 +31,22 @@ coachesprices = "NA,\n475,\n1255,\n1775\n"
 ch1sno = "1\n2\n"
 ch1pos = "1\n2\n"
 ch1names = "DL1\nDL2\n"
-ch1nofs = "78"
+ch1nofs = "75"
 
 ch2sno = "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n"
 ch2pos = "9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n"
 ch2names = "S1\nS2\nS3\nS4\nS5\nS6\nS7\nS8\nS9\nS10\nS11\n"
-ch2nofs = "71"
+ch2nofs = "75"
 
 ch3sno = "1\n2\n3\n4\n5\n6\n"
 ch3pos = "3\n4\n5\n6\n7\n8\n"
 ch3names = "B1\nB2\nB3\nB4\nB5\nB6\n"
-ch3nofs = "63"
+ch3nofs = "75"
 
 ch4sno = "1\n"
 ch4pos = "20\n"
 ch4names = "A1\n"
-ch4nofs = "45\n"
+ch4nofs = "75\n"
 
 @app.route("/")
 def welcome():

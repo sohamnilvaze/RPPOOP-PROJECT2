@@ -16,15 +16,15 @@ body {
 
 .header {
   overflow: hidden;
-  background-color: #f1f1f1;
-  padding: 20px 10px;
+  background-color: #1e07e9;
+  padding: 2px 10px;
 }
 
 .header a {
   float: left;
-  color: black;
+  color: rgb(248, 246, 246);
   text-align: center;
-  padding: 12px;
+  padding: 10px;
   text-decoration: none;
   font-size: 18px; 
   line-height: 25px;
@@ -66,16 +66,23 @@ body {
 <body>
 
 <div class="header">
-  <a href="#default" class="logo">SeatBooking</a>
-  <img src="{{ url_for('static',filename='logo.png') }} " alt="Websitelogo" width="75" height="75"> 
+  <a href="{{url_for('welcome')}}" class="logo">SeatBooking</a>
+  <!--<img src="{{ url_for('static',filename='logo.png') }} " alt="Websitelogo" width="75" height="75"> -->
   <div class="header-right">
   	{% if current_user.is_authenticated %}
-  		<a href="{{ url_for('logout')}}">Logout</a>
-      <a href="{{ url_for('account')}}">Account</a>
-      <a href="{{ url_for('traindetails') }}">Trains</a>
-      <a href="{{ url_for('train_list')}}">Seat Availabilty</a>
-      <a href="{{ url_for('add_train') }}">Add Train</a>
-      <a href="{{ url_for('deletetrain')}}">Remove Train</a>
+      {% if current_user.username == 'soham_vaze' %}
+        <a href="{{ url_for('logout')}}">Logout</a>
+        <a href="{{ url_for('account')}}">Account</a>
+        <a href="{{ url_for('traindetails') }}">Trains</a>
+        <a href="{{ url_for('train_list')}}">Seat Availabilty</a>
+        <a href="{{ url_for('add_train') }}">Add Train</a>
+        <a href="{{ url_for('deletetrain')}}">Remove Train</a>
+      {% else %}
+        <a href="{{ url_for('logout')}}">Logout</a>
+        <a href="{{ url_for('account')}}">Account</a>
+        <a href="{{ url_for('traindetails') }}">Trains</a>
+        <a href="{{ url_for('train_list')}}">Seat Availabilty</a>
+      {% endif %}
 
   	
   	{% else %}
@@ -128,7 +135,7 @@ body {
     <style>
         footer {
             text-align: center;
-            background-color: #333;
+            background-color: #3b07f7;
             color: white;
             padding: 1px;
             position: fixed;
@@ -146,9 +153,11 @@ body {
 </head>
 <body>
     <footer>
-        <img align="left" src="{{ url_for('static', filename='raillogo.png') }}" alt="Rail Logo" width="75" height="75">
-        <img align="right"  src="{{ url_for('static',filename='coeplogo.jpeg') }}" alt="Coep Logo" width="75" height="75">
-        <p>In service of Indian Railways, a initiative by COEP Technological University</p>
+        <div>
+          <img align="left" src="{{ url_for('static', filename='raillogo.png') }}" alt="Rail Logo" width="75" height="75">
+          <img align="right"  src="{{ url_for('static',filename='coeplogo.jpeg') }}" alt="Coep Logo" width="75" height="75">
+          <p>In service of Indian Railways, a initiative by COEP Technological University</p>
+        </div>
     </footer>
 </body>
 </html>
